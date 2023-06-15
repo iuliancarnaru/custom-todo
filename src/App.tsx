@@ -1,10 +1,10 @@
-import { Todo } from "./types";
+import { TodoType } from "./types";
 import CreatePanel from "./components/CreatePanel";
 import UpdatePanel from "./components/UpdatePanel";
 import TodoList from "./components/TodoList";
 import { useState } from "react";
 
-const initialTodos: Todo[] = [
+const initialTodos: TodoType[] = [
   {
     id: crypto.randomUUID(),
     title: "Wash car",
@@ -30,9 +30,9 @@ const initialTodos: Todo[] = [
 
 function App() {
   const [todos, setTodos] = useState(initialTodos);
-  const [currentTodo, setCurrentTodo] = useState<Todo | null>(null);
+  const [currentTodo, setCurrentTodo] = useState<TodoType | null>(null);
 
-  function handleCreateTodo(todo: Todo) {
+  function handleCreateTodo(todo: TodoType) {
     setTodos((todos) => [...todos, todo]);
   }
 
@@ -40,7 +40,7 @@ function App() {
     setTodos((todos) => todos.filter((todo) => todo.id !== id));
   }
 
-  function handleUpdateTodo(todo: Todo) {
+  function handleUpdateTodo(todo: TodoType) {
     setTodos((currTodos) =>
       currTodos.map((currTodo) =>
         currTodo.id === todo.id ? { ...todo } : currTodo
@@ -49,7 +49,7 @@ function App() {
     setCurrentTodo(null);
   }
 
-  function handleSetCurrent(todo: Todo) {
+  function handleSetCurrent(todo: TodoType) {
     setCurrentTodo(todo);
   }
 
